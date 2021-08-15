@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="10sp"
+    android:gravity="center"
+    android:background="#40423d">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtInputNumber"
+            android:layout_width="0sp"
+            android:layout_weight="80"
+            android:layout_height="match_parent"
+            android:autofillHints=""
+            android:gravity="center"
+            android:hint="@string/enter_a_number"
+            android:inputType="number"/>
+
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:id="@+id/main_imgCalcImage"
+            android:src="@drawable/calcimage1"
+            android:contentDescription="@string/calculator" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_btnAnalyse"
+        android:background="@drawable/shape_button"
+        android:text="@string/analyse"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/main_inputLayout"
+        android:background="@drawable/shape_is_prime">
+
+        <ImageView
+            android:layout_width="0sp"
+            android:id="@+id/main_imgArrow1"
+            android:layout_height="match_parent"
+            android:src="@drawable/arrow"
+            android:layout_weight="10"
+            android:contentDescription="@string/arrow" />
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="@string/input"/>
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#000000"/>
+
+        <HorizontalScrollView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="69">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_txtInput"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:textColor="@color/red"
+                android:gravity="center"/>
+
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15sp"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_progress"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_infoScroll"
+        android:padding="5sp"
+        android:visibility="gone"
+        android:background="@drawable/shape_info_scroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow2"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:layout_weight="10"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="59"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/prime_or_composite_number"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="#000000"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/main_txtPrimeOrNot"
+                    android:textSize="20sp"
+                    android:textColor="@color/red"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow7"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:layout_weight="10"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="59"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/even_or_odd"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="#000000"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/main_txtEvenOrOdd"
+                    android:textSize="20sp"
+                    android:textColor="@color/red"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="40sp"
+                    android:id="@+id/main_imgArrow4"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="200sp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/number_of_digits"/>
+
+                <TextView
+                    android:layout_width="5sp"
+                    android:layout_height="match_parent"
+                    android:background="#000000"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/main_txtNumberLength"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/red"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="40sp"
+                    android:id="@+id/main_imgArrow3"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="90sp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/scientific_form"/>
+
+                <TextView
+                    android:layout_width="5sp"
+                    android:layout_height="match_parent"
+                    android:background="#000000"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/main_txtScientificForm"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/red"/>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow5"
+                    android:layout_weight="10"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="90"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/binary_form"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_txtBinaryForm"
+                android:textSize="20sp"
+                android:background="@drawable/shape_is_prime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/red"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow6"
+                    android:layout_weight="10"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="90"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/prime_factorization"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_txtPrimeFactorization"
+                android:textSize="20sp"
+                android:background="@drawable/shape_is_prime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/red"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow9"
+                    android:layout_weight="10"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="64"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/total_number_of_divisors"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="#000000"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="25"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:id="@+id/txtNumberOfDiv"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <ImageView
+                    android:layout_width="0sp"
+                    android:id="@+id/main_imgArrow8"
+                    android:layout_weight="10"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/arrow" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="90"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/residues"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="40"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:textColor="@color/red"
+                    android:text="@string/number_to_divide"/>
+
+                <EditText
+                    android:id="@+id/main_edtNumberToDivide"
+                    android:layout_width="0sp"
+                    android:layout_weight="40"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:hint="@string/enter"
+                    android:autofillHints=""
+                    android:inputType="number"/>
+
+                <Button
+                    android:id="@+id/main_btnDivide"
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20"
+                    android:textAllCaps="false"
+                    android:background="@drawable/shape_button"
+                    android:text="@string/divide"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:id="@+id/main_txtUserResidue"
+                android:textSize="17sp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime"
+                android:textColor="@color/red"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_is_prime"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/main_residueLayout"
+                android:gravity="center"
+                android:padding="16sp">
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

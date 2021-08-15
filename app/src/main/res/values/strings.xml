@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Know Numbers</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="analyse">Analyse</string>
+    <string name="primeornot">PrimeOrNot</string>
+    <string name="prime_or_composite_number">Prime or composite?</string>
+    <string name="none">None</string>
+    <string name="prime_up_to_this_number">Prime Up to This Number</string>
+    <string name="arrow">Arrow</string>
+    <string name="input">Input:</string>
+    <string name="scientific_form">Scientific form</string>
+    <string name="number_of_digits">Number of digits</string>
+    <string name="binary_form">Binary Form</string>
+    <string name="prime_factorization">Prime Factorization</string>
+    <string name="even_or_odd">Even Or Odd?</string>
+    <string name="residues">Residues divided by some numbers</string>
+    <string name="total_number_of_divisors">Total Number Of Divisors</string>
+    <string name="enter">Enter</string>
+    <string name="divide">Divide</string>
+    <string name="number_to_divide">Enter a number to divide</string>
+    <string name="calculator">Calculator</string>
+    <string name="about_calculator">
+        This calculator will calculate fraction numbers. But after calculating it will cast out the digits after
+        decimal point (3.2 X 2.6 = 8).
+    </string>
+    <string name="ac">AC</string>
+    <string name="div">÷</string>
+    <string name="c">C</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="x">X</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="min">-</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="plus">+</string>
+    <string name="_0">0</string>
+    <string name="dot">.</string>
+    <string name="equal">=</string>
+    <string name="cancel">Cancel</string>
+    <string name="include">Include</string>
+    <string name="start_game">Start Game</string>
+    <string name="remaining_time">Remaining Time:</string>
+    <string name="enter_your_result">Enter Your Result</string>
+    <string name="submit">Submit</string>
+    <string name="max_digits_of_number1">Max digits of number1</string>
+    <string name="max_digit_of_number2">Max digit of number2</string>
+    <string name="time_per_query">Time per query</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="type_of_operation">Type of operation</string>
+    <string name="save">Save</string>
+    <string name="game_settings">Game Settings</string>
+    <string name="game_setting">Game Setting</string>
+    <string name="your_answer">Your Answer:</string>
+    <string name="play_game">Play Game</string>
+    <string name="result">Result</string>
+    <string name="calculation_type">Calculation type</string>
+</resources>

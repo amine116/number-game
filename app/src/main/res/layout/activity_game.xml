@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityGame"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_weight="49"
+                style="@style/Base.CardView"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button"
+                android:text="@string/start_game"
+                android:id="@+id/game_btnStartGame"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_weight="49"
+                style="@style/Base.CardView"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:id="@+id/game_btnCancel"
+                android:background="@drawable/shape_button"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5sp"
+            android:background="@drawable/shape_calc_button_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/remaining_time"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:background="@color/black"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="60"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:id="@+id/game_txtRemainingTime"/>
+
+            </LinearLayout>
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/seek_bar_background"
+                android:id="@+id/game_seekQueryProgress"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:background="@drawable/shape_is_prime">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/game_txtQueryCount"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:gravity="bottom"
+                    android:textSize="40sp"
+                    android:id="@+id/game_txtOperationSign"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="end"
+                        android:textSize="30sp"
+                        android:id="@+id/game_txtNumber1"
+                        android:layout_height="0sp"
+                        android:layout_weight="50"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="end"
+                        android:textSize="30sp"
+                        android:id="@+id/game_txtNumber2"
+                        android:layout_height="0sp"
+                        android:layout_weight="50"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:gravity="center"
+                android:background="@drawable/shape_is_prime"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:textSize="17sp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/your_answer"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@color/black"/>
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:id="@+id/game_txtUserResultInput"
+                    android:layout_height="match_parent"
+                    android:textSize="17sp"
+                    android:layout_weight="50"
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:background="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="@drawable/shape_is_prime"
+        android:id="@+id/txtCorrectness"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnAc"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:text="@string/ac"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <Button
+                android:id="@+id/btnX"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="@string/c"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btnMin"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:text="@string/min"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:text="@string/_7"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="@string/_8"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:background="@drawable/shape_button"
+                android:textColor="#ffffff"
+                android:text="@string/_9"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:text="@string/_4"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/_5"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:text="@string/_6"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:background="@drawable/shape_button"
+                android:textColor="#ffffff"
+                android:text="@string/_1"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_height="wrap_content"
+                android:text="@string/_2"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:background="@drawable/shape_button"
+                android:text="@string/_3"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:background="@drawable/shape_button"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="@string/_0"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btnPoint"
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_button"
+                android:textSize="20sp"
+                android:text="@string/dot"/>
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_weight="10"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="@string/submit"
+                android:enabled="false"
+                android:id="@+id/game_btnSubmit"
+                android:background="@drawable/shape_button"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

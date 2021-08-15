@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
+    android:gravity="center"
+    android:background="#000000"
+    tools:context=".ShowCurResultActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:gravity="center"
+        android:background="@drawable/shape_is_prime"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20sp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_is_prime"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/show_resultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
