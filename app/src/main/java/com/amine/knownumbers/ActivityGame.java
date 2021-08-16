@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,11 +47,11 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
             APP_NAME = "Numbers";
     private File fileSetting, curFile;
     public static final int MAX_MIN_PER_QUERY = 59, MAX_SEC_PER_QUERY = 59, MAX_DIGITS_IN_NUMBERS = 9;
-    private int queryCount = 0, seekBarIncrement = 0;
+    private int queryCount = 0, seekBarIncrement = 0, currentQueryIndex = -1;
     private double currentResult = 0.0, curNum1, curNum2;
     private ArrayList<Double> num1, num2, timeToSolve, correctResults;
     private ArrayList<String> res;
-    private double solvingTime = -1;
+    private double solvingTime = 0;
     private Menu optionsMenu;
 
     @Override
@@ -213,11 +214,12 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addArrayList(String input){
-        num1.add(curNum1);
-        num2.add(curNum2);
-        res.add(input);
-        timeToSolve.add(solvingTime);
-        correctResults.add(currentResult);
+        logI(solvingTime + " " + currentQueryIndex);
+        num1.set(currentQueryIndex, curNum1);
+        num2.set(currentQueryIndex, curNum2);
+        res.set(currentQueryIndex, input);
+        timeToSolve.set(currentQueryIndex, solvingTime/(double)1000);
+        correctResults.set(currentQueryIndex, currentResult);
     }
 
     private void initializeArrays() {
@@ -226,6 +228,13 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
         res = new ArrayList<>();
         timeToSolve = new ArrayList<>();
         correctResults = new ArrayList<>();
+        for(int i = 0; i < NUMBER_OF_QUERY; i++){
+            num1.add(0.0);
+            num2.add(0.0);
+            res.add("Not submitted");
+            timeToSolve.add(0.0);
+            correctResults.add(0.0);
+        }
     }
 
     private void setButtonsEnabled(){
@@ -309,25 +318,24 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     private Thread startQuery(){
         return new Thread(() -> {
 
-            for(int i = 1; i <= NUMBER_OF_QUERY + 1 && isThreadAlive; i++){
+            for(int i = 1; i <= NUMBER_OF_QUERY && isThreadAlive; i++){
 
+                TimeCountingThread tct = new TimeCountingThread();
+                currentQueryIndex = i - 1;
                 isInnerLoopAlive = true;
-                solvingTime = 0;
                 int tempTime = timePerQuery;
                 int currentSeekProgress = 0;
 
+                int finalI = i;
                 runOnUiThread(() -> {
                     seekQueryProgress.setProgress(0);
                     txtUserResultInput.setText("");
                     TextView tv = findViewById(R.id.txtCorrectness);
                     tv.setText("");
-                });
 
-
-                int finalI = i;
-                runOnUiThread(() -> {
                     Random random = new Random();
-                    int num1 = Math.abs(random.nextInt(maxNumb1)), num2 = Math.abs(random.nextInt(maxNumb2));
+                    int num1 = Math.abs(random.nextInt(maxNumb1)),
+                            num2 = Math.abs(random.nextInt(maxNumb2));
                     String strNum1 = num1 + "", strNum2 = num2 + "";
                     curNum1 = num1;
                     curNum2 = num2;
@@ -337,6 +345,13 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                     String count = "Query No: " + queryCount;
                     txtQueryCount.setText(count);
                 });
+
+                /*
+                runOnUiThread(() -> {
+
+                });
+
+                 */
 
                 while (tempTime > 0 && isThreadAlive && isInnerLoopAlive){
                     int sec = tempTime/1000,
@@ -359,30 +374,26 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
 
-                    solvingTime++;
                     tempTime -= 1000;
                 }
                 if(!submitClicked){
-                    addArrayList("notSubmitted");
+                    addArrayList("Not submitted");
                 }
-
-                if(i == NUMBER_OF_QUERY){
-                    runOnUiThread(() -> {
-                        isThreadAlive = false;
-                        btnStart.setEnabled(true);
-                        btnSubmit.setEnabled(false);
-                        btnCancel.setEnabled(false);
-                        txtQueryCount.setText("");
-                        txtOp.setText("");
-                        txtNumber1.setText("");
-                        txtNumber2.setText("");
-                        txtRemainingTime.setText("0:0");
-                        optionsMenu.findItem(R.id.gameMenu_setting).setEnabled(true);
-                        setButtonsDisabled();
-                    });
-                }
+                tct.stop();
             }
             isThreadAlive = false;
+            runOnUiThread(() -> {
+                btnStart.setEnabled(true);
+                btnSubmit.setEnabled(false);
+                btnCancel.setEnabled(false);
+                txtQueryCount.setText("");
+                txtOp.setText("");
+                txtNumber1.setText("");
+                txtNumber2.setText("");
+                txtRemainingTime.setText("0:0");
+                optionsMenu.findItem(R.id.gameMenu_setting).setEnabled(true);
+                setButtonsDisabled();
+            });
             //getCurFile(() -> saveResult(this::gotToShowCurResultActivity));
             runOnUiThread(new Runnable() {
                 @Override
@@ -403,6 +414,34 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
             });
         });
 
+    }
+
+    private class TimeCountingThread implements Runnable{
+        private volatile boolean isTimeCountingThreadAlive;
+
+        TimeCountingThread() {
+            Thread t = new Thread(this);
+            isTimeCountingThreadAlive = true;
+            t.start();
+        }
+
+        @Override
+        public void run() {
+            solvingTime = 0;
+            while (isTimeCountingThreadAlive){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    Toast.makeText(ActivityGame.this,
+                            e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                solvingTime++;
+            }
+        }
+
+        public void stop(){
+            isTimeCountingThreadAlive = false;
+        }
     }
 
     private void gotToShowCurResultActivity(){
@@ -605,12 +644,14 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
             Arrays.fill(results, 0);
 
             getAverageTime(results);
-            String s = "Total Query: " + results[0] + "\nCorrect: " + results[1] + "\nWrong: " + results[2]
+            initializeAdapter();
+
+            String s = "Total Query: " + results[0] + "\nCorrect: "
+                    + results[1] + "\nWrong: " + results[2]
                     + "\nAverage solving time: " + results[3];
 
 
             txtOverView.setText(s);
-            initializeAdapter();
 
         }
         private void initializeAdapter(){
@@ -635,7 +676,8 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                 public View getView(int position, View view, ViewGroup parent) {
 
                     if(view == null){
-                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        LayoutInflater inflater = (LayoutInflater)
+                                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         view = inflater.inflate(R.layout.current_result_dialog, null);
                     }
 
