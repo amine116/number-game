@@ -214,7 +214,7 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addArrayList(String input){
-        logI(solvingTime + " " + currentQueryIndex);
+        //logI(solvingTime + " " + currentQueryIndex);
         num1.set(currentQueryIndex, curNum1);
         num2.set(currentQueryIndex, curNum2);
         res.set(currentQueryIndex, input);
@@ -231,7 +231,7 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
         for(int i = 0; i < NUMBER_OF_QUERY; i++){
             num1.add(0.0);
             num2.add(0.0);
-            res.add("Not submitted");
+            res.add("init");
             timeToSolve.add(0.0);
             correctResults.add(0.0);
         }
@@ -320,11 +320,13 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
             for(int i = 1; i <= NUMBER_OF_QUERY && isThreadAlive; i++){
 
+                Random random = new Random();
                 TimeCountingThread tct = new TimeCountingThread();
                 currentQueryIndex = i - 1;
                 isInnerLoopAlive = true;
                 int tempTime = timePerQuery;
-                int currentSeekProgress = 0;
+                int currentSeekProgress = 0, intNum1 = Math.abs(random.nextInt(maxNumb1)),
+                        intNum2 = Math.abs(random.nextInt(maxNumb2));
 
                 int finalI = i;
                 runOnUiThread(() -> {
@@ -333,25 +335,15 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                     TextView tv = findViewById(R.id.txtCorrectness);
                     tv.setText("");
 
-                    Random random = new Random();
-                    int num1 = Math.abs(random.nextInt(maxNumb1)),
-                            num2 = Math.abs(random.nextInt(maxNumb2));
-                    String strNum1 = num1 + "", strNum2 = num2 + "";
-                    curNum1 = num1;
-                    curNum2 = num2;
+                    String strNum1 = intNum1 + "", strNum2 = intNum2 + "";
+                    curNum1 = intNum1;
+                    curNum2 = intNum2;
                     txtOp.setText(typeOfOperation);
-                    equalizeNumbers(strNum1, strNum2, num1, num2);
+                    equalizeNumbers(strNum1, strNum2, intNum1, intNum2);
                     queryCount = finalI;
                     String count = "Query No: " + queryCount;
                     txtQueryCount.setText(count);
                 });
-
-                /*
-                runOnUiThread(() -> {
-
-                });
-
-                 */
 
                 while (tempTime > 0 && isThreadAlive && isInnerLoopAlive){
                     int sec = tempTime/1000,
@@ -376,8 +368,12 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
                     tempTime -= 1000;
                 }
-                if(!submitClicked){
-                    addArrayList("Not submitted");
+
+                if(!submitClicked) {
+                    num1.set(i - 1, curNum1);
+                    num2.set(i - 1, curNum2);
+                    res.set(i - 1, "Not submitted");
+                    timeToSolve.set(i - 1, (double)timePerQuery/1000);
                 }
                 tct.stop();
             }
@@ -542,19 +538,17 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     private void equalizeNumbers(String numb1, String numb2, int n1, int n2){
         StringBuilder sb = new StringBuilder();
         if(n1 < n2){
-            String temp = numb1;
             int tn = n1;
-
             n1 = n2;
             n2 = tn;
 
+            String temp = numb1;
             numb1 = numb2;
             numb2 = temp;
         }
         setCurrentResult(n1, n2);
         int lenLes = numb1.length() - numb2.length();
         for(int i = 1; i <= lenLes; i++) sb.append("0");
-        txtNumber1.setText(numb1);
         txtNumber1.setText(numb1);
         txtNumber2.setText((sb.toString() + numb2));
 
@@ -640,13 +634,14 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
         private void initialize(){
 
             TextView txtOverView = findViewById(R.id.txtOverView);
-            double[] results = new double[4];
+            double[] results = new double[5];
             Arrays.fill(results, 0);
 
             getAverageTime(results);
             initializeAdapter();
 
-            String s = "Total Query: " + results[0] + "\nCorrect: "
+            String s = "Total Query: " + results[0] +
+                    "\nSubmitted: " + results[4] + "\nCorrect: "
                     + results[1] + "\nWrong: " + results[2]
                     + "\nAverage solving time: " + results[3];
 
@@ -686,7 +681,8 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                             txtSolvingTime = view.findViewById(R.id.txtSolvingTime),
                             txtIsCorrect = view.findViewById(R.id.txtIsCorrect);
 
-                    String s = "First Number: " + num1.get(position) + "\nSecond Number: " + num2.get(position);
+                    String s = "First Number: " + num1.get(position) +
+                            "\nSecond Number: " + num2.get(position);
                     txtNum1.setText(s);
                     s = "Your input: " + res.get(position) + "\n" +
                             "Correct result: " + correctResults.get(position);
@@ -722,23 +718,29 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
     private void getAverageTime(double[] results){
         double d = 0;
-
+        int ns = 0;
         for(int i = 0; i < timeToSolve.size(); i++){
             results[0]++;
             if(isNumber(res.get(i))){
                 if(Double.parseDouble(res.get(i)) == correctResults.get(i)){
                     results[1]++;
+                    d += timeToSolve.get(i);
                 }
                 else results[2]++;
             }
             else{
+                if (res.get(i).equals("Not submitted")){
+                    ns++;
+                    results[4]++;
+                    d += timeToSolve.get(i);
+                }
                 results[2]++;
             }
 
-            d += timeToSolve.get(i);
+
         }
 
-        if(timeToSolve.size() != 0) results[3] = d/timeToSolve.size();
+        if(timeToSolve.size() != 0) results[3] = d/(results[1] + ns);
         else results[3] = -1;
 
     }
